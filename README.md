@@ -6,6 +6,8 @@
 
 In this repository, I have implemented a document classifier based on [Deepdocclassifier: Document classification with deep Convolutional Neural Network](https://ieeexplore.ieee.org/document/7333933) (DCNN), which is trained and evaluated using the Tobacco-3482 dataset. I have partitioned the dataset into five partitions with different sizes for training and validation datasets for assessing the network. Five partitions used for evaluation include 20, 40, 60, 80, and 100 samples used for training and validations. The rest of the images are used for testing purposes. This evaluation method is taken from the original approach to compare results. To compare results, similar to the original paper, results are compared with [Convolutional Neural Networks for Document Image Classification](https://projet.liris.cnrs.fr/imagine/pub/proceedings/ICPR-2014/data/5209d168.pdf) (CNN).
 
+**Note:** In this implementation for DCNN, for AlexNet, I have not used original architecture as given in the paper because I couldn't find pre-trained network in PyTorch, hence I have used an updated pre-trained AlexNet based on paper "[One weird trick for parallelizing convolutional neural networks](https://arxiv.org/abs/1404.5997)" provided from [TorchVision](https://pytorch.org/vision/stable/_modules/torchvision/models/alexnet.html). For completion, I have provided the original implementation in [python module](deepDocClassifier/alexnet.py) adapted from [Image-Classification-PyTorch](https://github.com/Mayurji/Image-Classification-PyTorch/blob/main/AlexNet.py) repo. This can be used for training, by updating the [config file](config/deepDocConfig.yaml) for parameter `model_param.version` from `torchvision` to `original`.
+
 In this repository, DCNN and CNN are implemented using PyTorch and PyTorchLightning. To create partitions of data with different training and validation sizes, `LightningDataModule` is used, consumed by the Trainer class of PyTorchLightning. 
 
 Both DCNN and CNN are trained using locally using 
@@ -40,19 +42,6 @@ Below plots shows the learning curve using five different partitions, using numb
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
