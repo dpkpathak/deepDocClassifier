@@ -8,3 +8,5 @@ torchaudio==0.7.2
 pytorch-lightning==1.2.10
 pytorch-lightning-bolts==0.3.2
 pandas
+seaborn
+jupyterlab

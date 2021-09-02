@@ -3,6 +3,7 @@ This script runs trains the model with different configurations using YAML file
 """
 import argparse
 import json
+import os
 from datetime import datetime
 import gc
 
@@ -58,8 +59,8 @@ def main():
         callbacks = [model_checkpoint, ]
 
         tb_logger = TensorBoardLogger(
-            config['logging_params']['log_dir'] + '-' + timestamp,
-            name='' + 'dataSize_' + str(num_training)
+            os.path.join(config['logging_params']['log_dir'], config['model_param']['version']),
+            name='dataSize_' + str(num_training)
         )
 
         # save parameters of the config file to the tensorboard

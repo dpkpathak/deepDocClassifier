@@ -2,14 +2,14 @@ experiment:
   name: deepDocConfig
   manual_seed: 123
 
-training_dataset_sizes: [20,] #[ 20,40,60,80,100 ]
+training_dataset_sizes: [100,] #[ 20,40,60,80,100 ]
 
 model_param:
   version: torchvision    # torchvision/original
 
 dataset_params:
   img_root_dir: C:\workspace\dfki-task\Tobacco3482-jpg
-  num_workers: 8
+  num_workers: 2
   batch_size: 10
 
 logging_params:
@@ -17,7 +17,7 @@ logging_params:
 
 trainer_params:
   gpus: 1
-  max_epochs: 1
+  max_epochs: 50
   #  accelerator: ddp
   precision: 16
 #  log_gpu_memory: all
@@ -25,4 +25,4 @@ trainer_params:
   log_every_n_steps: 1
 #  limit_train_batches: 1 # set to 0.01 for testing the finetuning step
 #  limit_val_batches: 0.02
-  limit_test_batches: 0.3
+#  limit_test_batches: 0.02

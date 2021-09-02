@@ -98,9 +98,9 @@ class AlexNetPL(pl.LightningModule):
 
     def test_epoch_end(self, outputs) -> None:
         epoch_acc = torch.stack([x['acc'] for x in outputs]).mean()
-        y = torch.stack([x['y_real'] for x in outputs]).reshape((len(outputs) * 10, 1))
-        pred = torch.stack([x['y_pred'] for x in outputs]).reshape((len(outputs) * 10, 1))
-        results = torch.cat((y, pred), dim=1).cpu().numpy()
+        y = torch.cat([x['y_real'] for x in outputs])
+        pred = torch.cat([x['y_pred'] for x in outputs])
+        results = torch.stack((y, pred), axis=1).cpu().numpy()
         results = pd.DataFrame(results, columns=['label', 'pred'])
         results.to_csv(
             os.path.join(self.logger.log_dir, "test_result.csv"),
